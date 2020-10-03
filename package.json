@@ -1,0 +1,25 @@
+{
+  "name": "my-site-v2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "node": ">=12.x.x"
+  },
+  "scripts": {
+    "dev": "nodemon ./start.js localhost 5000",
+    "start": "node start.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/register": "^7.11.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "googleapis": "^60.0.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.4"
+  }
+}

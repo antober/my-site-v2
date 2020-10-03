@@ -1,0 +1,32 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    background-color: #141414;
+    color: white;
+}
+
+#main-content {
+
+    margin: 0;
+    padding: 0;
+}
+
+ol {
+    position: absolute;
+    left: 0;
+    top: 0;
+    list-style: none; 
+    counter-reset: li
+}
+
+li::before {
+    content: counter(li); 
+    color: white;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em
+}
+
+li {
+    counter-increment: li
+}
