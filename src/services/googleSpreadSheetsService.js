@@ -1,11 +1,13 @@
 const { google } = require('googleapis');
 const sheets = google.sheets('v4');
-const Auth = google.auth.GoogleAuth;
+
+import dotenv from "dotenv";
+dotenv.config()
 
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 
 async function getAuthToken() {
-  const auth = new Auth({
+  const auth = new google.auth.GoogleAuth({
     scopes: SCOPES
   });
   const authToken = await auth.getClient();
@@ -28,7 +30,6 @@ async function getSpreadSheet({spreadsheetId, auth}) {
     });
     return res;
   }
-  
   
   module.exports = {
     getAuthToken,
