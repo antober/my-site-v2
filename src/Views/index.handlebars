@@ -3,21 +3,21 @@
     <pre>
         <ol id="row-numbers"></ol>
         developer: {
-            {{ firstNameProp }}: "{{ firstNameVal }}",
-            {{ lastNameProp }}: "{{ lastNameVal }}",
-            {{ emailProp }}: <a href="mailto:antonoberg3@outlook.com">{{ emailVal }}</a>,
-            {{ githubProp }}: <a href="https://github.com/ao222qg">{{ githubVal }}</a>,
-            {{ linkedInProp }}: <a href="https://www.linkedin.com/in/anton-%C3%B6berg-416874182/">{{ linkedInVal }}</a>,
+            {{firstNameProp}}: "{{firstNameVal}}",
+            {{lastNameProp}}: "{{lastNameVal}}",
+            {{emailProp}}: <a href="mailto:{{emailVal}}">{{emailVal}}</a>,
+            {{githubProp}}: <a href="{{githubVal}}">{{githubVal}}</a>,
+            {{linkedInProp}}: <a href="{{linkedInVal}}">{{linkedInVal}}</a>,
             workplaces: [
                 {
-                    companyName: "Academic work",
-                    role: "It-consultant",
-                    timePeriod: "<span id="workDatesAcademicWork"></span>"
+                    {{companyNameProp}}: "{{companyNameval1}}",
+                    {{roleProp}}: "{{roleVal1}}",
+                    {{timePeriodProp}}: "{{timePeriodVal1}}"
                 },
                 {
-                    companyName: "Jetshop AB"
-                    role: "Software developer",
-                    timePeriod: "<span id="workDatesJetshop"></span>"
+                    {{companyNameProp}}: "{{companyNameval2}}",
+                    {{roleProp}}: "{{roleVal2}}",
+                    {{timePeriodProp}}: "{{timePeriodVal2}}"
                 }
             ]
         }
