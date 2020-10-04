@@ -149,4 +149,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Cred files
+service_account_credentials.json
+
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,node

@@ -1,3 +1,3 @@
-import spreadSheetService from './googleSpreadSheetsService';
+import googleSpreadSheetsService from './googleSpreadSheetsService';
 
-export default spreadSheetService;
+export default googleSpreadSheetsService;
