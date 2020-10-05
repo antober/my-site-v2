@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 dotenv.config();
 
 const { google } = require('googleapis');
@@ -12,8 +12,7 @@ const getGoogleAuthToken = async () => {
     	scopes: scopes
 	});
 	 
-  	const authToken = await auth.getClient();
-  	return authToken;
+  	return await auth.getClient();
 }
  
 const getGoogleSpreadSheetValues = async ({spreadsheetId, auth, sheetName}) => {

@@ -1,16 +1,16 @@
-import express from "express";
-import bodyParser from "body-parser";
-import exphbs from "express-handlebars";
-import path from "path";
+import express from 'express';
+import bodyParser from 'body-parser';
+import exphbs from 'express-handlebars';
+import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config();
-
-const sheetNameDeveloper = process.env.GOOGLE_SHEETNAME_DEVELOPER;
-const sheetNameWorkplaces = process.env.GOOGLE_SHEETNAME_WORKPLACES;
 
 import { getSpreadSheetValues } from './src/services/googleSpreadSheetsService';
 
 const app = express();
+const sheetNameDeveloper = process.env.GOOGLE_SHEETNAME_DEVELOPER;
+const sheetNameWorkplaces = process.env.GOOGLE_SHEETNAME_WORKPLACES;
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
