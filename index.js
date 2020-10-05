@@ -30,8 +30,9 @@ app.get('/', (req, res) => {
                 workplaceContext1Vals: Object.assign(...JSON.parse(result[1]).values[0].map((k, i) => ({[k]: JSON.parse(result[1]).values[1][i]}))),
                 workplaceContext2Vals: Object.assign(...JSON.parse(result[1]).values[0].map((k, i) => ({[k]: JSON.parse(result[1]).values[2][i]})))
             }
-            res.render('index', context)
-               });
+
+            res.render('index', context);
+        });
 });
 
 app.all('*', (req, res) => {
