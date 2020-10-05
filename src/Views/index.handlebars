@@ -1,26 +1,25 @@
-
 <div id="main-content">
     <pre>
         <ol id="row-numbers"></ol>
         developer: {
-            {{firstNameProp}}: "{{firstNameVal}}",
-            {{lastNameProp}}: "{{lastNameVal}}",
-            {{emailProp}}: <a href="mailto:{{emailVal}}">{{emailVal}}</a>,
-            {{githubProp}}: <a href="{{githubVal}}">{{githubVal}}</a>,
-            {{linkedInProp}}: <a href="{{linkedInVal}}">{{linkedInVal}}</a>,
+            {{developerContextProps.firstName}}: "{{developerContextVals.firstName}}",
+            {{developerContextProps.lastName}}: "{{developerContextVals.lastName}}",
+            {{developerContextProps.email}}: <a href="mailto:{{developerContextVals.email}}">{{developerContextVals.email}}</a>,
+            {{developerContextProps.github}}: <a href="{{developerContextVals.github}}">{{developerContextVals.github}}</a>,
+            {{developerContextProps.linkedIn}}: <a href="{{developerContextVals.linkedIn}}">{{developerContextVals.linkedIn}}</a>,
             workplaces: [
                 {
-                    {{companyNameProp}}: "{{companyNameval1}}",
-                    {{roleProp}}: "{{roleVal1}}",
-                    {{timePeriodProp}}: "{{timePeriodVal1}}"
+                    {{workplaceContextProps.companyName}}: "{{workplaceContext1Vals.companyName}}",
+                    {{workplaceContextProps.role}}: "{{workplaceContext1Vals.role}}",
+                    {{workplaceContextProps.timePeriod}}: "{{workplaceContext1Vals.timePeriod}}"
                 },
                 {
-                    {{companyNameProp}}: "{{companyNameval2}}",
-                    {{roleProp}}: "{{roleVal2}}",
-                    {{timePeriodProp}}: "{{timePeriodVal2}}"
-                }
+                    {{workplaceContextProps.companyName}}: "{{workplaceContext2Vals.companyName}}",
+                    {{workplaceContextProps.role}}: "{{workplaceContext2Vals.role}}",
+                    {{workplaceContextProps.timePeriod}}: "{{workplaceContext2Vals.timePeriod}}"
+                }    
             ]
         }
         <span id="cursor">|</span>
     </pre>
-    </div> 
+</div> 

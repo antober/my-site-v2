@@ -24,22 +24,5 @@ const blinkingCursor = () => {
     }, 500);
 }
 
-const getWorkDates = (timeSpan) => {
-    if (timeSpan.endDate === 'present') {
-        return `${timeSpan.startDate.toDateString()} - ${timeSpan.endDate}`;
-    }
-    
-    return `${timeSpan.startDate.toDateString()} - ${timeSpan.endDate.toDateString()}`;
-}
-
-const getWorkPeriods = () => {
-    let academicWork = { startDate: new Date(2019, 9, 3), endDate: new Date(2020, 11, 4) };
-    let jetshop = { startDate: new Date(2020, 0, 7), endDate: 'present' };
-
-    document.getElementById('workDatesAcademicWork').innerText = getWorkDates(academicWork);
-    document.getElementById('workDatesJetshop').innerText = getWorkDates(jetshop);  
-}
-
 blinkingCursor();
 createRowNumbers();
-getWorkPeriods();
