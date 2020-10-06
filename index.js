@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { getSpreadSheetValues } from './src/services/googleSpreadSheetsService';
+import { convertToMultipleObjects, convertToObject } from './src/helpers/objectConverter'
 
 const app = express();
 const sheetNameDeveloper = process.env.GOOGLE_SHEETNAME_DEVELOPER;
