@@ -1,35 +1,50 @@
-const convertToObject = async (input) => {
-	const properties = [...JSON.parse(input[0]).values[0]];
-	const values = [...JSON.parse(input[0]).values[1]];
-	const result = properties.reduce(
-		(accumulator, value, index) => Object.assign(accumulator, {
-    	[value]: values[index],
-    	}), {}
+const convertToObject = (input) => {
+    const inputPropsCopy = [...JSON.parse(input[0]).values[0]];
+    const inputValsCopy = [...JSON.parse(input[0]).values[1]];
+    const result = inputPropsCopy.reduce(
+        (accumulator, value, index) =>
+            Object.assign(accumulator, {
+                [value]: inputValsCopy[index],
+            }),
+        {}
     );
-  
-	return result;
-}
+
+    return Object.freeze(result);
+};
 
 const convertToMultipleObjects = (input) => {
-	const copy = [...JSON.parse(input[1]).values];
-	const keys = copy.shift();
-	const result = []
-	
-	for (let i = 0; i < copy.length -1; i++) {
-		for (let j = 0; j < copy[i].length -1; j++) {
-			result.push(keys.reduce(
-				(accumulator, value, index) => Object.assign(accumulator, {
-				[value]: copy[j][index],
-				}), {}
-			));
-		}
-	}
-	
-	console.log(result)
-	return result;
-}
+    const inputCopy = [...JSON.parse(input[1]).values];
+    const keys = inputCopy.shift();
+    const result = [];
 
-export {
-	  convertToObject,
-	  convertToMultipleObjects
-}
+    for (let i = 0; i < inputCopy.length; i++) {
+        for (let j = 0; j < inputCopy[i].length; j++) {
+            var obj = keys.reduce(
+                (accumulator, value, index) => 
+                    Object.assign(accumulator, {
+                        [value]: inputCopy[i][index],
+                    }),
+                {}
+            );
+        }
+
+        result.push(obj)
+    }
+
+    result.forEach((o) => {
+        Object.freeze(o);
+    });
+    
+    return result;
+};
+
+const isLastIndex = (input, i) => {
+    const inputCopy = [...JSON.parse(input[1]).values];
+    if (i == inputCopy.length - 1) {
+        return true;
+    }
+
+    return false;
+};
+
+export { convertToObject, convertToMultipleObjects, isLastIndex };

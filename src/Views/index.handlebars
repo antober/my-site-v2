@@ -8,16 +8,13 @@
             {{developerContextProps.github}}: <a href="{{developerContextVals.github}}">{{developerContextVals.github}}</a>,
             {{developerContextProps.linkedIn}}: <a href="{{developerContextVals.linkedIn}}">{{developerContextVals.linkedIn}}</a>,
             workplaces: [
+                {{#each workplaceContext}}
                 {
-                    {{workplaceContextProps.companyName}}: "{{workplaceContext1Vals.companyName}}",
-                    {{workplaceContextProps.role}}: "{{workplaceContext1Vals.role}}",
-                    {{workplaceContextProps.timePeriod}}: "{{workplaceContext1Vals.timePeriod}}"
-                },
-                {
-                    {{workplaceContextProps.companyName}}: "{{workplaceContext2Vals.companyName}}",
-                    {{workplaceContextProps.role}}: "{{workplaceContext2Vals.role}}",
-                    {{workplaceContextProps.timePeriod}}: "{{workplaceContext2Vals.timePeriod}}"
-                }    
+                    companyName: {{this.companyName}}
+                    role: {{this.role}}
+                    timePeriod: {{this.timePeriod}}
+                }{{#if isLastIndex}}{{else}},{{/if}}
+                {{/each}}
             ]
         }
         <span id="cursor">|</span>
