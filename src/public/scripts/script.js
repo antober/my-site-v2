@@ -1,5 +1,5 @@
 const createRowNumbers = () => {
-    let rows = 22;
+    let rows = 91;
 
     for (let i = 0; i < rows; i++) {
         let number = document.createElement('li');

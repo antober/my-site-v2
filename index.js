@@ -3,7 +3,10 @@ import bodyParser from "body-parser";
 import exphbs from "express-handlebars";
 import path from "path";
 import dotenv from "dotenv";
+
 dotenv.config();
+import redis from 'redis';
+const client = redis.createClient(6379);
 
 import { getSpreadSheetValues } from "./src/services/googleSpreadSheetsService";
 import {
@@ -25,7 +28,82 @@ app.set("views", path.join(__dirname, "src/views"));
 app.engine("handlebars", exphbs({ defaultLayout: "layout" }));
 app.set("view engine", "handlebars");
 
-app.get("/", (req, res) => {
+const set = (key, value) => {
+    console.log(key)
+    client.set(key, JSON.stringify(value));
+}
+
+const get = (req, res, next) => {
+        let key = req.route.path;
+
+        //FIXME: needs better key handling
+        // if(google response status code is 304 Not Modified, keep key, otherwise update it (keyName + 1++.ToString())
+        client.keys('*', function (err, keys) {
+            for(var i = 0, len = keys.length; i < len; i++) {
+                console.log(keys[i]);
+            }
+        })
+        
+        client.get(key, (error, redisValue) => {
+            if (error) {
+                res.status(400).send(err);
+            }
+            if (redisValue !== null) {
+                const context = {
+                    developerContextProps: Object.assign(
+                        ...JSON.parse(Object(JSON.parse(redisValue))[0]).values[0].map((k, i) => ({
+                            [k]: JSON.parse(Object(JSON.parse(redisValue))[0]).values[0][i],
+                        }))
+                    ),
+                    developerContextVals: Object.assign(
+                        ...JSON.parse(Object(JSON.parse(redisValue))[0]).values[0].map((k, i) => ({
+                            [k]: JSON.parse(Object(JSON.parse(redisValue))[0]).values[1][i],
+                        }))
+                    ),
+                    developerContext: convertToObject(JSON.parse(redisValue)),
+                    workplaceContext: convertToMultipleObjects(JSON.parse(redisValue)),
+                    isLastIndex: isLastIndex(JSON.parse(redisValue)),
+                    responseTime: 1
+                };
+                res.render("index", context); 
+            } else {
+                next();
+            }
+
+      });
+ }
+
+ app.get("/redis", get, (req, res) => {
+    Promise.all([
+        getSpreadSheetValues(sheetNameDeveloper),
+        getSpreadSheetValues(sheetNameWorkplaces),
+    ]).then((redisValue) => {
+          set(req.route.path, redisValue);
+          const context = {
+            developerContextProps: Object.assign(
+                ...JSON.parse(Object(JSON.parse(redisValue))[0]).values[0].map((k, i) => ({
+                    [k]: JSON.parse(Object(JSON.parse(redisValue))[0]).values[0][i],
+                }))
+            ),
+            developerContextVals: Object.assign(
+                ...JSON.parse(Object(JSON.parse(redisValue))[0]).values[0].map((k, i) => ({
+                    [k]: JSON.parse(Object(JSON.parse(redisValue))[0]).values[1][i],
+                }))
+            ),
+            developerContext: convertToObject(JSON.parse(redisValue)),
+            workplaceContext: convertToMultipleObjects(JSON.parse(redisValue)),
+            isLastIndex: isLastIndex(JSON.parse(redisValue)),
+            responseTime: 1
+        };
+        res.render("index", context);
+      })
+      .catch(error => {
+        console.error(error);
+        res.status(400).send(error);
+      });
+});
+
+app.get("/", async (req, res) => {
     Promise.all([
         getSpreadSheetValues(sheetNameDeveloper),
         getSpreadSheetValues(sheetNameWorkplaces),
@@ -43,7 +121,8 @@ app.get("/", (req, res) => {
             ),
             developerContext: convertToObject(result),
             workplaceContext: convertToMultipleObjects(result),
-            isLastIndex: isLastIndex(result)
+            isLastIndex: isLastIndex(result),
+            responseTime: 2
         };
 
         res.render("index", context);

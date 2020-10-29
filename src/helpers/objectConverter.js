@@ -27,13 +27,9 @@ const convertToMultipleObjects = (input) => {
                 {}
             );
         }
-
+        Object.freeze(obj);
         result.push(obj)
     }
-
-    result.forEach((o) => {
-        Object.freeze(o);
-    });
     
     return result;
 };
