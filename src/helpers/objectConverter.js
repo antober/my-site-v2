@@ -20,7 +20,7 @@ const convertToMultipleObjects = (input) => {
     for (let i = 0; i < inputCopy.length; i++) {
         for (let j = 0; j < inputCopy[i].length; j++) {
             var obj = keys.reduce(
-                (accumulator, value, index) => 
+                (accumulator, value, index) =>
                     Object.assign(accumulator, {
                         [value]: inputCopy[i][index],
                     }),
@@ -30,7 +30,7 @@ const convertToMultipleObjects = (input) => {
         Object.freeze(obj);
         result.push(obj)
     }
-    
+
     return result;
 };
 

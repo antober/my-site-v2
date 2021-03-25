@@ -15,18 +15,34 @@ ol {
     position: absolute;
     left: 0;
     top: 0;
-    list-style: none; 
+    list-style: none;
     counter-reset: li
 }
 
 li::before {
-    content: counter(li); 
+    content: counter(li);
     color: white;
-    display: inline-block; 
+    display: inline-block;
     width: 1em;
     margin-left: -1em
 }
 
 li {
     counter-increment: li
+}
+
+a:link {
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: underline;
 }
