@@ -150,6 +150,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # Cred files
-# service_account_credentials.json
+service_account_credentials.json
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,node
