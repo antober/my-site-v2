@@ -10,7 +10,7 @@ import { toObject } from '../helpers/objectCreator';
 dotenv.config();
 
 let client
-
+console.log(process.env.REDISCLOUD_URL)
 client = redis.createClient(process.env.REDISCLOUD_URL)
 
 const set = (key, value) => {
