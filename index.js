@@ -25,6 +25,12 @@ app.set("views", path.join(__dirname, "src/views"));
 app.engine("handlebars", exphbs({ defaultLayout: "layout" }));
 app.set("view engine", "handlebars");
 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('*', function (req, res) {
+ res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
 app.get("/", async (req, res) => {
     Promise.all([
         getSpreadSheetValues(sheetNameDeveloper),
