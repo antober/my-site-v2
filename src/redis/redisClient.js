@@ -1,4 +1,5 @@
 import redis from 'redis';
+import dotenv, { parse } from "dotenv";
 import {
     convertToMultipleObjects,
     convertToObject,
@@ -6,7 +7,15 @@ import {
 } from "../helpers/objectConverter";
 import { toObject } from '../helpers/objectCreator';
 
-const client = redis.createClient(6379);
+dotenv.config();
+
+let client
+if(process.env.REDIS_URL){
+    let parsedRedisUrl = parse(process.env.REDIS_URL)
+    client = redis.createClient(parsedRedisUrl)
+} else {
+    client = redis.createClient()
+}
 
 const set = (key, value) => {
     client.set(key, JSON.stringify(value), 'EX', 10 * 1 * 1);
