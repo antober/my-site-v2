@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, "src/public")));
 
-app.set("views", path.join(__dirname, "src/views"));
+app.set("views", path.join(__dirname, "src/Views"));
 app.engine("handlebars", exphbs({ defaultLayout: "layout" }));
 app.set("view engine", "handlebars");
 
