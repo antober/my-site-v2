@@ -10,12 +10,8 @@ import { toObject } from '../helpers/objectCreator';
 dotenv.config();
 
 let client
-if(process.env.REDIS_URL){
-    let parsedRedisUrl = parse(process.env.REDIS_URL)
-    client = redis.createClient(parsedRedisUrl)
-} else {
-    client = redis.createClient()
-}
+
+client = redis.createClient(process.env.REDIS_URL)
 
 const set = (key, value) => {
     client.set(key, JSON.stringify(value), 'EX', 10 * 1 * 1);
