@@ -34,13 +34,8 @@ const convertToMultipleObjects = (input) => {
     return result;
 };
 
-const isLastIndex = (input, i) => {
-    const inputCopy = [...JSON.parse(input[1]).values];
-    if (i == inputCopy.length - 1) {
-        return true;
-    }
-
-    return false;
+const isLastIndex = (input) => {
+    return input[input.length - 1] === input.slice(-1)[0]
 };
 
 export { convertToObject, convertToMultipleObjects, isLastIndex };

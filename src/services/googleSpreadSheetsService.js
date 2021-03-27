@@ -8,13 +8,11 @@ const spreadsheetId = process.env.GOOGLE_SPREADSHEET_ID;
 const scopes = ['https://www.googleapis.com/auth/spreadsheets'];
 
 const getGoogleAuthToken = async () => {
-  	const auth = new Auth({
-    	scopes: scopes
-	});
-	 
+  	const auth = new Auth({ scopes: scopes });
+
   	return await auth.getClient();
 }
- 
+
 const getGoogleSpreadSheetValues = async ({spreadsheetId, auth, sheetName}) => {
     return await sheets.spreadsheets.values.get({
      	spreadsheetId,
@@ -31,18 +29,14 @@ const getSpreadSheetValues = async (sheetName) => {
             sheetName: sheetName,
             auth
         });
-
         let result = JSON.stringify(response.data, null, 2);
-        let promise = new Promise((resolve, reject) => {
-            resolve(result)
-        });
 
-        return promise;
-        } catch(error) {
-            console.log(error.message, error.stack);
-        }
+        return new Promise((resolve, reject) => {resolve(result)});
+    } catch(error) {
+        console.log(error.message, error.stack);
+    }
 }
-  
+
 export {
     getGoogleAuthToken,
 	getGoogleSpreadSheetValues,

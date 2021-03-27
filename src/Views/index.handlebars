@@ -7,16 +7,17 @@
             {{developerContextProps.email}}: <a href="mailto:{{developerContextVals.email}}">{{developerContextVals.email}}</a>,
             {{developerContextProps.github}}: <a href="{{developerContextVals.github}}">{{developerContextVals.github}}</a>,
             {{developerContextProps.linkedIn}}: <a href="{{developerContextVals.linkedIn}}">{{developerContextVals.linkedIn}}</a>,
+            redis: <a href="/redis">redis</a>,
             workplaces: [
                 {{#each workplaceContext}}
                 {
-                    companyName: {{this.companyName}}
-                    role: {{this.role}}
-                    timePeriod: {{this.timePeriod}}
-                }{{#if isLastIndex}}{{else}},{{/if}}
+                    companyName: "{{this.companyName}}"
+                    role: "{{this.role}}"
+                    timePeriod: "{{this.timePeriod}}"
+                }{{#if ../isLastIndex}},{{/if}}
                 {{/each}}
+
             ]
         } <span id="cursor">|</span>
-
     </pre>
 </div>

@@ -1,7 +1,10 @@
 # my-site-v2
 
-run commands
+enviromentvariables
 ```sh
-export GCLOUD_PROJECT={project ID}
-export GOOGLE_APPLICATION_CREDENTIALS=./service_account_credentials.json
+GOOGLE_SPREADSHEET_ID={spreadsheetid}
+GOOGLE_APPLICATION_CREDENTIALS=./{applicationcredentials}.json
+GOOGLE_SHEETNAME_{SHEETNAME}={sheetname}
+GCLOUD_PROJECT={project ID}
+GOOGLE_APPLICATION_CREDENTIALS=./service_account_credentials.json
 ```
