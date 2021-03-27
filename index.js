@@ -25,12 +25,6 @@ app.set("views", path.join(__dirname, "src/views"));
 app.engine("handlebars", exphbs({ defaultLayout: "layout" }));
 app.set("view engine", "handlebars");
 
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('*', function (req, res) {
- res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
 app.get("/", async (req, res) => {
     Promise.all([
         getSpreadSheetValues(sheetNameDeveloper),
@@ -81,6 +75,12 @@ app.get("/redis", get, (req, res) => {
 
 app.all("*", (req, res) => {
     res.render("404")
+});
+
+app.use(express.static(path.join(__dirname, 'src/views')));
+
+app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'src/views', 'index.handlebars'));
 });
 
 app.listen(process.env.PORT || 5000);
