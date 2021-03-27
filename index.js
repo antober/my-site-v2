@@ -73,14 +73,14 @@ app.get("/redis", get, (req, res) => {
     });
 });
 
-app.all("*", (req, res) => {
-    res.render("404")
-});
-
-app.use(express.static(path.join(__dirname, 'src/views')));
+app.use(express.static(__dirname + 'src/public'));
 
 app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'src/views', 'index.handlebars'));
+    res.sendFile(path.join(__dirname, 'src/public', 'index.html'));
+});
+
+app.all("*", (req, res) => {
+    res.render("404")
 });
 
 app.listen(process.env.PORT || 5000);
