@@ -73,8 +73,6 @@ app.get("/redis", get, (req, res) => {
     });
 });
 
-app.use(express.static(__dirname + 'src/public'));
-
 app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'src/public', 'index.html'));
 });
