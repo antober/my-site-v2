@@ -11,7 +11,7 @@ dotenv.config();
 
 let client
 
-client = redis.createClient(process.env.REDIS_URL)
+client = redis.createClient(process.env.REDISCLOUD_URL)
 
 const set = (key, value) => {
     client.set(key, JSON.stringify(value), 'EX', 10 * 1 * 1);
